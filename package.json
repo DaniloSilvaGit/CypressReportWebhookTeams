@@ -1,0 +1,24 @@
+{
+  "name": "cypressautomationpageobject",
+  "version": "1.0.0",
+  "description": "Testes E2E com Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniloSilvaGit/CypressAutomationPageObject.git"
+  },
+  "keywords": [],
+  "author": "Danilo Vasconcelos Silva",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DaniloSilvaGit/CypressAutomationPageObject/issues"
+  },
+  "homepage": "https://github.com/DaniloSilvaGit/CypressAutomationPageObject#readme",
+  "devDependencies": {
+    "cypress": "^15.18.1"
+  }
+}
