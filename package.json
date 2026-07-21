@@ -23,5 +23,13 @@
     "@cypress/grep": "^6.0.2",
     "cypress": "^15.18.1",
     "mochawesome": "^7.1.4"
+  },
+  "dependencies": {
+    "cypress-mochawesome-reporter": "^3.8.0",
+    "cypress-multi-reporters": "^1.6.4",
+    "cypress-plugin-api": "^2.11.1",
+    "mocha": "^10.2.0",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }
