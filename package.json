@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DaniloSilvaGit/CypressAutomationPageObject#readme",
   "devDependencies": {
+    "@cypress/grep": "^6.0.2",
     "cypress": "^15.18.1"
   }
 }
