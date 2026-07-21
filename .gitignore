@@ -66,3 +66,6 @@ pnpm-debug.log*
 *.temp
 *.bak
 *.orig
+
+#Videos e reports
+*.mp4
