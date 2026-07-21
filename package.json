@@ -6,7 +6,6 @@
   "scripts": {
     "test": "npx cypress run",
     "cy:open": "npx cypress open"
-
   },
   "repository": {
     "type": "git",
@@ -22,6 +21,7 @@
   "homepage": "https://github.com/DaniloSilvaGit/CypressAutomationPageObject#readme",
   "devDependencies": {
     "@cypress/grep": "^6.0.2",
-    "cypress": "^15.18.1"
+    "cypress": "^15.18.1",
+    "mochawesome": "^7.1.4"
   }
 }
