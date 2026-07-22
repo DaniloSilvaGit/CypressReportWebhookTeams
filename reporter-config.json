@@ -2,7 +2,7 @@
     "reporterEnabled": "mochawesome",
     "mochawesomeReporterOptions": {
       "reportDir": "mochawesome-report",
-      "reportFilename": "OPME_[status]_[datetime]-[name]",
+      "reportFilename": "DANILOQA_[status]_[datetime]-[name]",
       "timestamp": "longDate",
       "quiet": true,
       "overwrite": false,
