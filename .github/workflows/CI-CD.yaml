@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: relatorios-cypress
-          path: cypress/mochawesome-report # Caminho padrão onde os relatórios do mochawesome costumam ser gerados
+          path: mochawesome-report # Caminho padrão onde os relatórios do mochawesome costumam ser gerados
           retention-days: 1
 
       
