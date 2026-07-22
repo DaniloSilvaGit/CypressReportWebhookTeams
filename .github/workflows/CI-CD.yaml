@@ -1,29 +1,16 @@
-name: Pipeline de CI/CD
+name: Testes Cypress
 
-# Define quando o pipeline deve rodar
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
-# Define os trabalhos (jobs) que serão executados
 jobs:
-  build:
-   
+  cypress-run:
     runs-on: ubuntu-latest
-
     steps:
-      - task: NodeTool@0 
-        imputs:
-          VerionSpec: '18.x'
-        displayName: 'Install Node.js'
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-      - script: |
-          npm install
-        displayName: 'npm install'
-
-      - script: |
-          npx cypress run
-        displayName: 'run E2E tests'
-        
-        
+      - name: Rodar testes do Cypress
+        uses: cypress-io/github-action@v7
+        with:
+          # Inicia, instala dependências e roda o cypress automaticamente
+          install: true
