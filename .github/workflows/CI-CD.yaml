@@ -24,7 +24,7 @@ jobs:
           retention-days: 1
 
       - name: Enviar relatório Cypress para Webhook Teams
-        if: always() && secrets.POWER_AUTOMATE_WEBHOOK != ''
+        if: always()
         continue-on-error: true
         env:
           POWER_AUTOMATE_WEBHOOK: ${{ secrets.POWER_AUTOMATE_WEBHOOK }}
