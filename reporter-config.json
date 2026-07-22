@@ -1,13 +1,12 @@
 {
-    "reporterEnabled": "mochawesome",
-    "mochawesomeReporterOptions": {
-      "reportDir": "mochawesome-report",
-      "reportFilename": "DANILOQA_[status]_[datetime]-[name]",
-      "timestamp": "longDate",
-      "quiet": true,
-      "overwrite": false,
-      "html": true,
-      "json": true
-    }
+  "reporterEnabled": "mochawesome",
+  "mochawesomeReporterOptions": {
+    "reportDir": "mochawesome-report",
+    "reportFilename": "DANILOQA_report",
+    "timestamp": "longDate",
+    "quiet": true,
+    "overwrite": false,
+    "html": true,
+    "json": true
   }
-  
+}

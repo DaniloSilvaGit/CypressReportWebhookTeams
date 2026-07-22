@@ -23,4 +23,17 @@ jobs:
           path: mochawesome-report # Caminho padrão onde os relatórios do mochawesome costumam ser gerados
           retention-days: 1
 
+      - name: Enviar relatório Cypress para Webhook Teams
+        if: always()
+        env:
+          POWER_AUTOMATE_WEBHOOK: ${{ secrets.POWER_AUTOMATE_WEBHOOK }}
+          MOCHA_REPORT_DIR: ./mochawesome-report
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_WORKFLOW: ${{ github.workflow }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: node .github/workflows/send-teams-webhook.js
+
       
