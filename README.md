@@ -1,118 +1,80 @@
-# QA Engineer Portfolio: Automação E2E com Cypress
+# Cypress Report Webhook Teams
 
-Bem-vindo ao meu repositório de portfólio focado em Engenharia de Qualidade de Software! Este projeto foi desenvolvido para demonstrar práticas modernas de testes automatizados de ponta a ponta (E2E), garantindo a estabilidade, confiabilidade e performance de aplicações web.
+Este projeto usa Cypress para executar testes E2E e envia um resumo dos resultados para o Power Automate do Teams via webhook.
 
----
+## Instalação
 
-## Tecnologias Utilizadas
+1. Clone o repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   cd CypressReportWebhookTeams
+   ```
 
-*   **Cypress:** Framework de testes automatizados rápido, fácil e executado diretamente no navegador.
-*   **JavaScript / TypeScript:** Linguagem base para a construção dos scripts.
-*   **Design Pattern (Page Objects):** Padrão de projeto utilizado para desacoplar a lógica dos testes da estrutura das páginas.
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
----
+## Dependências principais
 
-## Arquitetura e Padrão de Projeto (Page Objects)
+O projeto utiliza:
 
-Para garantir que a suíte de testes seja sustentável a longo prazo, adotei o padrão **Page Object Model (POM)**. 
+- Cypress
+- Mochawesome
+- cypress-mochawesome-reporter
+- cypress-multi-reporters
+- mocha
+- mochawesome-merge
+- mochawesome-report-generator
 
-### Por que usar Page Objects?
-*   **Reutilização de Código:** Elementos e interações visuais são definidos apenas uma vez. Se o botão de login mudar de ID, eu só preciso alterar em um único arquivo, e não em dezenas de testes.
-*   **Legibilidade:** Os arquivos de especificação (`.spec.js` ou `.cy.js`) ficam limpos e focados no comportamento do usuário, parecendo uma documentação viva.
+Essas dependências estão definidas no arquivo package.json.
 
-### Estrutura do Projeto
-```text
-├── cypress/
-│   ├── e2e/               # Os cenários de teste reais (o "o que" testar)
-│   │   ├── login.cy.js
-│   │   └── checkout.cy.js
-│   ├── pages/             # As classes do Page Objects (o "como" interagir)
-│   │   ├── LoginPage.js
-│   │   └── CheckoutPage.js
-│   ├── support/           # Configurações globais e comandos customizados
-└── cypress.config.js      # Arquivo de configuração do Cypress
- Exemplo Prático de Código
-Veja como a estrutura fica limpa ao separar a página do teste em si:
+## Como executar os testes
 
-1. A Classe da Página (pages/LoginPage.js)
-JavaScript
-class LoginPage {
-  // Mapeamento dos elementos (Locators)
-  get inputEmail() { return cy.get('#email-input'); }
-  get inputPassword() { return cy.get('#password-input'); }
-  get btnSubmit() { return cy.get('#login-button'); }
+Para abrir o Cypress localmente:
 
-  // Ações na página
-  preencherLogin(email, password) {
-    this.inputEmail.type(email);
-    this.inputPassword.type(password);
-  }
-
-  enviarFormulario() {
-    this.btnSubmit.click();
-  }
-}
-
-export default new LoginPage();
-2. O Cenário de Teste (e2e/login.cy.js)
-JavaScript
-import LoginPage from '../pages/LoginPage';
-
-describe('Funcionalidade: Login', () => {
-  beforeEach(() => {
-    cy.visit('/login');
-  });
-
-  it('Deve realizar login com sucesso usando credenciais válidas', () => {
-    LoginPage.preencherLogin('qa.tester@email.com', 'SenhaSegura123');
-    LoginPage.enviarFormulario();
-    
-    // Validação (Assertion)
-    cy.url().should('include', '/dashboard');
-  });
-});
-
-Como Executar o Projeto
-Se você quiser rodar este projeto localmente na sua máquina, siga os passos abaixo:
-
-Pré-requisitos
-Node.js (versão 18 ou superior)
-
-NPM ou Yarn
-
-Cypress 
-
-Passo a Passo
-Clone o repositório:
-
-Bash
-git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-cd SEU_REPOSITORIO
-Instale as dependências:
-
-Bash
-npm install
-Abra o Cypress (Interface Gráfica):
-
-Bash
+```bash
 npm run cy:open
-(Ou utilize npx cypress open caso prefira)
+```
 
-Execute em modo Headless (No terminal):
+Para executar os testes no modo headless:
 
-Bash
-npm run cy:run
+```bash
+npm run test
+```
 
--Boas Práticas Aplicadas neste Projeto
-Evitar seletores frágeis: Foco em utilizar atributos de dados como data-cy ou data-testid sempre que possível.
+## Funcionamento do send-teams-webhook.js
 
--Independência de testes: Cada teste limpa o estado ou roda de forma isolada, sem depender do sucesso do teste anterior.
+O arquivo [.github/workflows/send-teams-webhook.js](.github/workflows/send-teams-webhook.js) é responsável por ler o arquivo JSON gerado pelo relatório do Cypress, montar um payload no formato Adaptive Card e enviá-lo para o webhook do Power Automate.
 
--Ganchos de ciclo de vida (Hooks): Uso correto de beforeEach para otimizar o fluxo de navegação.
+### Fluxo do script
 
-Vamos conversar?
-Estou sempre aberto a feedbacks, networking e novas oportunidades na área de QA e Automação de Testes!
+1. Lê o relatório JSON gerado pelo Cypress.
+2. Extrai métricas como:
+   - quantidade de suites
+   - quantidade de testes
+   - testes aprovados
+   - testes falhados
+   - duração da execução
+3. Monta um payload com essas informações.
+4. Salva o payload em um arquivo JSON local, por exemplo:
+   - [mochawesome-report/payload-enviado-Teams.json](mochawesome-report/payload-enviado-Teams.json)
+5. Envia o payload para o webhook configurado.
 
-LinkedIn: Seu Nome ou Link do Perfil
+### Variáveis de ambiente
 
-E-mail: [seu.email@exemplo.com]
+O script usa as seguintes variáveis:
+
+- POWER_AUTOMATE_WEBHOOK: URL do webhook do Power Automate
+- MOCHA_REPORT: caminho do arquivo JSON do relatório, se quiser substituir o padrão
+- PAYLOAD_OUTPUT_PATH: caminho onde o payload será salvo localmente
+
+Exemplo de execução:
+
+```bash
+POWER_AUTOMATE_WEBHOOK="sua-url" node .github/workflows/send-teams-webhook.js
+```
+
+## Observação
+
+O script espera que o relatório do Cypress já tenha sido gerado antes da execução.
