@@ -1,32 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-function resolveReportPath() {
-  if (process.env.MOCHA_REPORT) {
-    return path.resolve(process.env.MOCHA_REPORT);
-  }
-
-  const reportDir = path.resolve(
-    process.env.MOCHA_REPORT_DIR || "./mochawesome-report"
-  );
-
-  if (!fs.existsSync(reportDir)) {
-    throw new Error(`Diretório de relatório não encontrado: ${reportDir}`);
-  }
-
-  const reportFiles = fs
-    .readdirSync(reportDir)
-    .filter((file) => file.toLowerCase().endsWith(".json"))
-    .map((file) => path.join(reportDir, file));
-
-  if (reportFiles.length === 0) {
-    throw new Error(`Nenhum arquivo JSON encontrado em: ${reportDir}`);
-  }
-
-  return reportFiles[0];
-}
-
-const REPORT_PATH = resolveReportPath();
+const REPORT_PATH =
+  process.env.MOCHA_REPORT ||
+  "./mochawesome-report/DANILOQA_report";
 
 const PAYLOAD_OUTPUT_PATH = path.resolve(
   process.env.PAYLOAD_OUTPUT_PATH ||
