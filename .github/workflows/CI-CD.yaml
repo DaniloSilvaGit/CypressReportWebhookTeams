@@ -36,4 +36,12 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         run: node .github/workflows/send-teams-webhook.js
 
+      - name: Salvar Report AdaptativeCards para Debug
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-Teams-Json
+          path: mochawesome-report # Caminho padrão onde os relatórios do mochawesome costumam ser gerados
+          retention-days: 1
+
       
