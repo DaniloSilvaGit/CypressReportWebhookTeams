@@ -3,7 +3,7 @@ const path = require("path");
 
 const REPORT_PATH =
   process.env.MOCHA_REPORT ||
-  "./mochawesome-report/DANILOQA_report";
+  "./mochawesome-report/DANILOQA_report.json";
 
 const PAYLOAD_OUTPUT_PATH = path.resolve(
   process.env.PAYLOAD_OUTPUT_PATH ||
