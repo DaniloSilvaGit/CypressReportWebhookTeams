@@ -13,16 +13,6 @@ const PAYLOAD_OUTPUT_PATH = path.resolve(
 const POWER_AUTOMATE_WEBHOOK =
   process.env.POWER_AUTOMATE_WEBHOOK;
 
-// Como o intuito é somente demonstrar o código e não temos um webhook Real..
-// Estou Inserindo um ByPass para a pipeline não ficar com falha nas execuções
-if (!POWER_AUTOMATE_WEBHOOK) {
-  console.log(
-    "POWER_AUTOMATE_WEBHOOK não configurado. Pulando envio do payload."
-  );
-  process.exit(0);
-}
-//
-
 async function main() {
   const report = JSON.parse(
     fs.readFileSync(path.resolve(REPORT_PATH), "utf8")
@@ -217,6 +207,16 @@ async function main() {
   fs.writeFileSync(PAYLOAD_OUTPUT_PATH, payloadJson, "utf8");
 
   console.log(`Payload salvo em: ${PAYLOAD_OUTPUT_PATH}`);
+  
+  //Pulando envio do payload caso webhook não esteja configurado
+  //Mas ainda sim salvando o Payload
+  if (!POWER_AUTOMATE_WEBHOOK) {
+    console.log(
+      "POWER_AUTOMATE_WEBHOOK não configurado. Pulando envio do payload."
+    );
+    return;
+  }
+  //
 
   const response = await fetch(
     POWER_AUTOMATE_WEBHOOK,
