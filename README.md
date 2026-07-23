@@ -151,7 +151,7 @@ O script utiliza as seguintes variáveis:
 
 | Variável | Descrição |
 |----------|-----------|
-| `POWER_AUTOMATE_WEBHOOK` | URL do webhook do Power Automate. |
+| `TEAMS_WEBHOOK_URL` | URL do webhook do Power Automate. |
 | `MOCHA_REPORT` | Caminho do arquivo JSON do Mochawesome (opcional). |
 | `PAYLOAD_OUTPUT_PATH` | Caminho onde o payload será salvo localmente (opcional). |
 
