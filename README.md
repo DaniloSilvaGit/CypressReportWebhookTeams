@@ -4,6 +4,9 @@ Este projeto utiliza **Cypress** para executar testes automatizados (E2E, funcio
 
 O objetivo é fornecer **visibilidade**, **rastreabilidade** e **feedback rápido** sobre as execuções dos testes automatizados para todos os stakeholders envolvidos no projeto.
 
+<img width="522" height="491" alt="image" src="https://github.com/user-attachments/assets/1df1f28e-e3cc-4ff2-8fc5-f8e4255a80bc" />
+
+
 ---
 
 # Tecnologias
@@ -148,7 +151,7 @@ O script utiliza as seguintes variáveis:
 
 | Variável | Descrição |
 |----------|-----------|
-| `POWER_AUTOMATE_WEBHOOK` | URL do webhook do Power Automate. |
+| `TEAMS_WEBHOOK_URL` | URL do webhook do Power Automate. |
 | `MOCHA_REPORT` | Caminho do arquivo JSON do Mochawesome (opcional). |
 | `PAYLOAD_OUTPUT_PATH` | Caminho onde o payload será salvo localmente (opcional). |
 
@@ -185,7 +188,7 @@ Esse comportamento permite validar o payload localmente sem depender de uma inte
 
 O arquivo `payload-enviado-Teams.json` contém apenas o conteúdo da propriedade **body** do Adaptive Card.
 
-Para visualizar o cartão antes do envio, utilize o **Adaptive Cards Designer**.
+Para visualizar o cartão antes do envio, utilize o **Adaptive Cards Designer**. https://adaptivecards.microsoft.com/designer
 
 Modelo de exemplo:
 
