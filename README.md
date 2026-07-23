@@ -129,6 +129,7 @@ POWER_AUTOMATE_WEBHOOK="sua-url" node .github/workflows/send-teams-webhook.js
 # Funcionamento do send-teams-webhook.js
 
 O arquivo `.github/workflows/send-teams-webhook.js` é responsável por ler o relatório JSON gerado pelo Mochawesome, montar um payload no formato **Adaptive Card** e enviá-lo ao Power Automate.
+O fluxo atual pega variaveis do GitHub, mas pode ser adaptado para outras pipelines de CI/CD.
 
 ## Fluxo do script
 
