@@ -187,11 +187,9 @@ Esse comportamento permite validar o payload localmente sem depender de uma inte
 
 # Testando o Adaptive Card
 
-O arquivo `payload-enviado-Teams.json` contém apenas o conteúdo da propriedade **body** do Adaptive Card.
+Para visualizar o cartão antes do envio, é possivel utilziar o **Adaptive Cards Designer**. https://adaptivecards.microsoft.com/designer
 
-Para visualizar o cartão antes do envio, utilize o **Adaptive Cards Designer**. https://adaptivecards.microsoft.com/designer
-
-Modelo de exemplo:
+No arquivo json gerado pelo projeto 'payload-enviado-Teams.json', pegue o conteudo do body e ajuste o json conforme exemplo abaixo:
 
 ```json
 {
@@ -202,6 +200,7 @@ Modelo de exemplo:
   ]
 }
 ```
+Também é possivel utilizar o plugin do Adaptive Cards para VSCODE: TeamsDevApp.vscode-adaptive-cards
 
 ---
 
